@@ -11,12 +11,4 @@ then
     echo "PostgreSQL started"
 fi
 
-#python manage.py flush --no-input
-python manage.py migrate
-if [ "$DJANGO_SUPERUSER_USERNAME" ]
-then
-    python manage.py createsuperuser \
-        --noinput \
-        --email $DJANGO_SUPERUSER_EMAIL
-fi
 exec "$@"
