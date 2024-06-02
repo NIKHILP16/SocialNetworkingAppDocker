@@ -1,5 +1,5 @@
 # Social Networking Application
-API for social networking application using Django Rest Framework using Docker, Gunicorn, Postgresql and Nginx .
+API's for social networking application using Django Rest Framework, Docker, Gunicorn, Postgresql and Nginx .
 
 
 ## Prerequisites
