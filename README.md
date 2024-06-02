@@ -3,7 +3,7 @@ API's for social networking application using Django Rest Framework, Docker, Gun
 
 
 ## Prerequisites
-- Dokcer, Docker Compose
+- Docker, Docker Compose
 
 
 ## Installation
