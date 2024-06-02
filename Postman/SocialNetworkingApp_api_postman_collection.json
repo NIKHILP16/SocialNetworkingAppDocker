@@ -1,0 +1,403 @@
+{
+	"info": {
+		"_postman_id": "237e78c6-e3df-44e9-ba1b-b4eea5cd1dc0",
+		"name": "SocialNetworkingApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19474871"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data= JSON.parse(responseBody)",
+									"console.log(data)",
+									"pm.globals.set(\"token\", data.token.access);",
+									"pm.globals.set(\"refresh\", data.token.refresh);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"NIK1@p.com\",\n    \"password\": \"Passport1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/account/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LogOut",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "signatureImage",
+									"type": "file",
+									"src": "/home/nikhil/Pictures/macos-catalina-cb.jpg",
+									"disabled": true
+								},
+								{
+									"key": "refresh",
+									"value": "{{refresh}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/account/logout",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "xyz@p.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Passport1",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "XYZ",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/account/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Find Friends",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/user_profile/find_friends?search=xyz1@p.com",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"user_profile",
+								"find_friends"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "xyz1@p.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Friend Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer_id\": \"c74f6f2c-d24a-4079-8ab1-247837e04e33\",\n    \"product_id\":\"b61d61a6-971e-4870-8ce2-816732d1b9a4\",\n    \"batch_number\":\"NACL-550989\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/user_profile/send_request/d80f9e3f-16cf-418e-afc3-8955027f6f05",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"user_profile",
+								"send_request",
+								"d80f9e3f-16cf-418e-afc3-8955027f6f05"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept Friend Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"invoice_type\":\"sales\",\n    \"customer_id\": \"d2a79f2c-152a-4db2-85fb-535e44403b86\",\n    \"customer_invoice_number\":null,\n    \"invoice_date\":\"2024-01-10\",\n    \"in_cash\":\"false\",\n    \"via\":\"MP09\",\n    \"other_charges\":67,\n    \"products\": [\n    {\n      \"product\":\"b6b205d9-5637-401d-947d-4cfb8b0cefe1\",\n      \"stock\": 1,\n      \"cost_price\": 1000,\n      \"expiry_date\":\"2025-01-09\",\n      \"batch_number\":\"NACL-550989\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/user_profile/accept_request/66af04e2-3af2-44a2-9f25-8792a4a5ab36",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"user_profile",
+								"accept_request",
+								"66af04e2-3af2-44a2-9f25-8792a4a5ab36"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reject Frined Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"invoice_type\":\"sales\",\n    \"customer_id\": \"d2a79f2c-152a-4db2-85fb-535e44403b86\",\n    \"customer_invoice_number\":null,\n    \"invoice_date\":\"2024-01-10\",\n    \"in_cash\":\"false\",\n    \"via\":\"MP09\",\n    \"other_charges\":67,\n    \"products\": [\n    {\n      \"product\":\"b6b205d9-5637-401d-947d-4cfb8b0cefe1\",\n      \"stock\": 1,\n      \"cost_price\": 1000,\n      \"expiry_date\":\"2025-01-09\",\n      \"batch_number\":\"NACL-550989\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/user_profile/pending_request",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"user_profile",
+								"pending_request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Friend List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"invoice_type\":\"purchase\",\n    \"customer_id\": \"d2a79f2c-152a-4db2-85fb-535e44403b86\",\n    \"customer_invoice_number\":\"ZBO992\",\n    \"invoice_date\":\"2024-01-10\",\n    \"in_cash\":\"false\",\n    \"via\":\"MP09\",\n    \"other_charges\":67,\n    \"products\": [\n    {\n      \"product\":\"b6b205d9-5637-401d-947d-4cfb8b0cefe1\",\n      \"stock\": 10,\n      \"cost_price\": 1000,\n      \"expiry_date\":\"2025-01-09\",\n      \"batch_number\":\"NACL-550989\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/user_profile/friend_list",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"user_profile",
+								"friend_list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pending Requests",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"invoice_type\":\"purchase\",\n    \"customer_id\": \"d2a79f2c-152a-4db2-85fb-535e44403b86\",\n    \"customer_invoice_number\":\"ZBO992\",\n    \"invoice_date\":\"2024-01-10\",\n    \"in_cash\":\"false\",\n    \"via\":\"MP09\",\n    \"other_charges\":67,\n    \"products\": [\n    {\n      \"product\":\"b6b205d9-5637-401d-947d-4cfb8b0cefe1\",\n      \"stock\": 10,\n      \"cost_price\": 1000,\n      \"expiry_date\":\"2025-01-09\",\n      \"batch_number\":\"NACL-550989\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/user_profile/pending_request",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"user_profile",
+								"pending_request"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

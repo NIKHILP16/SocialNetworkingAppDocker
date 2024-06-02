@@ -1,1 +1,3 @@
 venv
+app/account/migrations
+app/user_profile/migrations
