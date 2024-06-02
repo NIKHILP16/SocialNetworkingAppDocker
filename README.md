@@ -1,5 +1,5 @@
 # Social Networking Application
-Create an API for social networking application using Django Rest Framework with below functionalities.
+API for social networking application using Django Rest Framework using Docker, Gunicorn, Postgresql and Nginx .
 
 
 ## Prerequisites
