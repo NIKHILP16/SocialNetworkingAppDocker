@@ -79,7 +79,7 @@ Create an API for social networking application using Django Rest Framework with
 
 
 
-# 4. PostMan Collection:
+# 5. PostMan Collection:
 ● Global Variables:\   
 &emsp;- Postman/workspace_postman_globals.json
 
