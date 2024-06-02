@@ -22,3 +22,56 @@ Create an API for social networking application using Django Rest Framework with
 
    To collect static folder :
       docker compose -f docker-compose.dev.yml  exec web python3 manage.py collectstatic
+
+# 4. Access API endpoints:
+
+
+## User API Endpoints:
+
+● Create User:  
+&emsp;- POST http://127.0.0.1:1337/api/account/register   
+&emsp;&emsp;eg. { "email":"x@y.xyz","password":"Passport1" ,"name":"XYZ" } 
+
+● Login User to genrate token:   
+&emsp;- POST http://127.0.0.1:1337/api/account/login      
+&emsp;&emsp;eg. { "email":x@y.xyz","password":"Passport1" } 
+
+● User Logout:   
+&emsp;- POST http://127.0.0.1:1337/api/account/logout
+
+● Change Password for User:    
+&emsp;- POST http://127.0.0.1:1337/api/account/change-password     
+&emsp;&emsp;eg. {"current_password": "string","new_password": "string"}
+
+● Refresh token for User:  
+&emsp;- POST http://127.0.0.1:1337/api/account/token-refresh'      
+&emsp;&emsp;eg. {"refresh": "string"}
+
+
+
+
+## Profile API Endpoints:
+
+● View Profile:  
+&emsp;- POST http://127.0.0.1:1337/api/user_profile/profile/<uuid:profile_id>
+
+● Find Friends (List All):  
+&emsp;- POST http://127.0.0.1:1337/api/user_profile/find_friends?search=xyz 
+
+● Search Friend (exact search by email or contains by name):  
+&emsp;- POST http://127.0.0.1:1337/api/user_profile/find_friends?search=xyz 
+
+● Send Friend Request (Throttle Limit 3/min):   
+&emsp;- POST http://127.0.0.1:1337/api/user_profile/send_request/<uuid:profile_id>
+
+● Accept Frined Request:   
+&emsp;- POST http://127.0.0.1:1337/api/user_profile/accept_request/<uuid:friend_request_id>
+
+● Reject Frined Request:   
+&emsp;- POST http://127.0.0.1:1337/api/user_profile/reject_request/<uuid:friend_request_id>
+
+● Pending Frined Request:   
+&emsp;- POST http://127.0.0.1:1337/api/user_profile/pending_request
+
+● Frineds List:   
+&emsp;- POST http://127.0.0.1:1337/api/user_profile/friend_list
