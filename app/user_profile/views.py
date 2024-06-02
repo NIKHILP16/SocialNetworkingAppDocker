@@ -55,7 +55,7 @@ class FriendRequest(GenericViewSet):
     permission_classes = [IsAuthenticated, ]
     authentication_classes=[authentication.JWTAuthentication]
 
-    @method_decorator(ratelimit(key='ip', rate='1/m', method='POST'))
+    @method_decorator(ratelimit(key='ip', rate='3/m', method='POST'))
     def send_friend_request(self,request, profile_id=None,*args, **kwargs):
         try:
             sender_user_profile = Profile.objects.get(user=request.user)
