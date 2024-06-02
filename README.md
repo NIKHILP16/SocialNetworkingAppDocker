@@ -17,10 +17,10 @@ Create an API for social networking application using Django Rest Framework with
    docker compose -f docker-compose.yml up -d --build
 
 # 3. Run Following cmds:
-   To migrate :
+   To migrate :\
 &emsp;&emsp;docker compose -f docker-compose.yml  exec web python3 manage.py migrate
 
-   To collect static folder :
+   To collect static folder :\
 &emsp;&emsp;docker compose -f docker-compose.yml  exec web python3 manage.py collectstatic
 
 # 4. Access API endpoints:
@@ -75,3 +75,14 @@ Create an API for social networking application using Django Rest Framework with
 
 ● Frineds List:   
 &emsp;- POST http://127.0.0.1:1337/api/user_profile/friend_list
+
+
+
+
+# 4. PostMan Collection:
+● Global Variables:\   
+&emsp;- Postman/workspace_postman_globals.json
+
+● Collection:\   
+&emsp;- Postman/SocialNetworkingApp_api_postman_collection.json
+
