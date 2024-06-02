@@ -3,7 +3,7 @@ Create an API for social networking application using Django Rest Framework with
 
 
 ## Prerequisites
-- Dokcer , Docker Compose
+- Dokcer, Docker Compose
 
 
 ## Installation
@@ -18,10 +18,10 @@ Create an API for social networking application using Django Rest Framework with
 
 # 3. Run Following cmds:
    To migrate :
-      docker compose -f docker-compose.dev.yml  exec web python3 manage.py migrate
+&emsp;&emsp;docker compose -f docker-compose.yml  exec web python3 manage.py migrate
 
    To collect static folder :
-      docker compose -f docker-compose.dev.yml  exec web python3 manage.py collectstatic
+&emsp;&emsp;docker compose -f docker-compose.yml  exec web python3 manage.py collectstatic
 
 # 4. Access API endpoints:
 
@@ -53,7 +53,7 @@ Create an API for social networking application using Django Rest Framework with
 ## Profile API Endpoints:
 
 ● View Profile:  
-&emsp;- POST http://127.0.0.1:1337/api/user_profile/profile/<uuid:profile_id>
+&emsp;- POST http://127.0.0.1:1337/api/user_profile/profile/&lt;uuid:profile_id&gt;
 
 ● Find Friends (List All):  
 &emsp;- POST http://127.0.0.1:1337/api/user_profile/find_friends?search=xyz 
@@ -62,13 +62,13 @@ Create an API for social networking application using Django Rest Framework with
 &emsp;- POST http://127.0.0.1:1337/api/user_profile/find_friends?search=xyz 
 
 ● Send Friend Request (Throttle Limit 3/min):   
-&emsp;- POST http://127.0.0.1:1337/api/user_profile/send_request/<uuid:profile_id>
+&emsp;- POST http://127.0.0.1:1337/api/user_profile/send_request/&lt;uuid:profile_id&gt;
 
 ● Accept Frined Request:   
-&emsp;- POST http://127.0.0.1:1337/api/user_profile/accept_request/<uuid:friend_request_id>
+&emsp;- POST http://127.0.0.1:1337/api/user_profile/accept_request/&lt;uuid:friend_request_id&gt;
 
 ● Reject Frined Request:   
-&emsp;- POST http://127.0.0.1:1337/api/user_profile/reject_request/<uuid:friend_request_id>
+&emsp;- POST http://127.0.0.1:1337/api/user_profile/reject_request/&lt;uuid:friend_request_id&gt;
 
 ● Pending Frined Request:   
 &emsp;- POST http://127.0.0.1:1337/api/user_profile/pending_request
