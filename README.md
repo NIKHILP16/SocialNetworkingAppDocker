@@ -1,5 +1,5 @@
 # Social Networking Application
-API's for social networking application using Django Rest Framework, Docker, Gunicorn, Postgresql and Nginx .
+API's for social networking application using Django Rest Framework, Docker, Gunicorn, Postgresql and Nginx.
 
 
 ## Prerequisites
@@ -80,9 +80,9 @@ API's for social networking application using Django Rest Framework, Docker, Gun
 
 
 # 5. PostMan Collection:
-● Global Variables:\   
+● Global Variables:   
 &emsp;- Postman/workspace_postman_globals.json
 
-● Collection:\   
+● Collection:   
 &emsp;- Postman/SocialNetworkingApp_api_postman_collection.json
 
