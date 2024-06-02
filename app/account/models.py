@@ -1,5 +1,5 @@
 from django.db import models
-
+import uuid
 import datetime
 
 from django.contrib.auth.base_user import AbstractBaseUser
@@ -44,6 +44,7 @@ class MyUserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(max_length=255,unique=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)

@@ -91,3 +91,6 @@ db.sqlite3
 
 
 /app/venv/
+/app/.venv/
+/app/account/migrations/
+/app/user_profile/migrations/

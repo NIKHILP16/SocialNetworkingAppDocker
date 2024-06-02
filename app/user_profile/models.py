@@ -1,32 +1,39 @@
 from django.db import models
 from account.models import User
+import uuid
 # Create your models here.
 class Profile(models.Model):
+    id=models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_online = models.BooleanField(default=False)
-    following = models.ManyToManyField(User, related_name="following", blank=True)
-    friends = models.ManyToManyField(User, related_name='my_friends', blank=True)
+    friends = models.ManyToManyField("self", related_name='my_friends', blank=True,symmetrical=False)
     
-    def get_friends(self):
-        return self.friends.all()
-
-    def get_friends_no(self):
+    
+    @property
+    def friends_count(self):
         return self.friends.all().count()
+
 
     def __str__(self):
         return f'{self.user.name} Profile'
 
 
 
-STATUS_CHOICES = (
-    ('send','send'),
-    ('accepted','accepted')
-)
+
+
+
 
 class FriendRequests(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='friend_sender')
     receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='friend_receiver')
-    status = models.CharField(max_length=8, choices=STATUS_CHOICES)
+    STATUS_CHOICES = (
+    ('send','send'),
+    ('accepted','accepted'),
+    ('rejected','rejected')
+    )
+
+    status = models.CharField(max_length=8, choices=STATUS_CHOICES,default=STATUS_CHOICES[0][0])
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 

@@ -2,14 +2,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from rest_framework import status
+from rest_framework import status,permissions
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import  Response
 from rest_framework.views import APIView
 from .utils import get_tokens_for_user
 from .serializers import RegistrationSerializer, PasswordChangeSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 class RegistrationView(APIView):
@@ -52,9 +52,13 @@ class LoginView(APIView):
 
 class LogoutView(APIView):
     def post(self, request):
-        logout(request)
-        return Response({'message': 'Successfully Logged out'}, status=status.HTTP_200_OK)
+        try:
+            request.user.auth_token.delete()
+            logout(request)
 
+            return Response({'message': 'Successfully Logged out'},status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class ChangePasswordView(APIView):
